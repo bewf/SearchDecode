@@ -9,7 +9,15 @@
       background: #0a0a0a;
       width: 220px;
       padding: 12px;
-      font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+
+      font-family:
+        ui-sans-serif,
+        system-ui,
+        -apple-system,
+        "Segoe UI",
+        Roboto,
+        Arial;
+
       font-weight: 700;
     }
 
@@ -23,17 +31,54 @@
       user-select: none;
     }
 
+    .button {
+      width: 100%;
+      height: 42px;
+
+      border-radius: 14px;
+      border: 1px solid #222;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      margin-bottom: 10px;
+
+      cursor: pointer;
+      user-select: none;
+
+      font-size: 14px;
+      font-weight: 800;
+
+      transition:
+        background 0.15s,
+        color 0.15s;
+    }
+
+    .enabled {
+      background: #be3fff;
+      color: #f5ea7b;
+    }
+
+    .disabled {
+      background: #0a0a0a;
+      color: #555;
+    }
+
     .toggle {
       width: 100%;
       height: 44px;
+
       border-radius: 14px;
       overflow: hidden;
       border: 1px solid #222;
+
       display: flex;
     }
 
     .half {
       width: 50%;
+
       display: flex;
       align-items: center;
       justify-content: center;
@@ -64,6 +109,10 @@
 <body>
 
 <div class="title">Search Decode</div>
+
+<div id="enabledButton" class="button enabled">
+  ENABLED
+</div>
 
 <div class="toggle">
   <div id="left" class="half">URL ONLY</div>

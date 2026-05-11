@@ -1,14 +1,29 @@
 let mode = "url_only";
+let enabled = true;
 
-// load saved mode
-browser.storage.local.get("mode").then((res) => {
+// load saved settings
+browser.storage.local.get([
+  "mode",
+  "enabled"
+]).then((res) => {
+
   mode = res.mode || "url_only";
+
+  enabled =
+    res.enabled !== undefined
+      ? res.enabled
+      : true;
 });
 
-// live update
+// live updates
 browser.storage.onChanged.addListener((changes) => {
+
   if (changes.mode) {
     mode = changes.mode.newValue;
+  }
+
+  if (changes.enabled) {
+    enabled = changes.enabled.newValue;
   }
 });
 
@@ -23,6 +38,7 @@ function decodeBase64(str) {
 }
 
 function isLikelyUrl(str) {
+
   // supports:
   // https://example.com
   // http://example.com
@@ -33,8 +49,13 @@ function isLikelyUrl(str) {
 }
 
 function normalizeUrl(str) {
+
   // add https if missing
-  if (!str.startsWith("http://") && !str.startsWith("https://")) {
+
+  if (
+    !str.startsWith("http://") &&
+    !str.startsWith("https://")
+  ) {
     return "https://" + str;
   }
 
@@ -43,18 +64,30 @@ function normalizeUrl(str) {
 
 browser.webRequest.onBeforeRequest.addListener(
   (details) => {
+
     const currentUrl = new URL(details.url);
     const query = currentUrl.searchParams.get("q");
 
-    if (!query) return;
+    if (!query) {
+      return;
+    }
+
+    // extension disabled
+    if (!enabled) {
+      return;
+    }
 
     const decoded = decodeBase64(query);
 
-    if (!decoded) return;
+    if (!decoded) {
+      return;
+    }
 
     // URL ONLY MODE
     if (mode === "url_only") {
+
       if (isLikelyUrl(decoded)) {
+
         return {
           redirectUrl: normalizeUrl(decoded)
         };
@@ -63,17 +96,18 @@ browser.webRequest.onBeforeRequest.addListener(
       return;
     }
 
-    // ALL MODE
+    // URL + TEXT MODE
     if (mode === "all") {
 
-      // if decoded text looks like a URL, redirect
+      // redirect URLs directly
       if (isLikelyUrl(decoded)) {
+
         return {
           redirectUrl: normalizeUrl(decoded)
         };
       }
 
-      // otherwise search decoded text normally
+      // search decoded text normally
       const searchUrl =
         "https://www.google.com/search?q=" +
         encodeURIComponent(decoded);

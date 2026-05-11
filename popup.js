@@ -1,9 +1,22 @@
 const left = document.getElementById("left");
 const right = document.getElementById("right");
+const enabledButton = document.getElementById("enabledButton");
 
 let mode = "url_only";
+let enabled = true;
 
 function render() {
+
+  // enabled button
+  if (enabled) {
+    enabledButton.className = "button enabled";
+    enabledButton.textContent = "ENABLED";
+  } else {
+    enabledButton.className = "button disabled";
+    enabledButton.textContent = "DISABLED";
+  }
+
+  // mode switch
   if (mode === "all") {
     right.className = "half active";
     left.className = "half inactive";
@@ -13,25 +26,45 @@ function render() {
   }
 }
 
-function setMode(newMode) {
-  mode = newMode;
-
+function save() {
   browser.storage.local.set({
-    mode: mode
+    mode,
+    enabled
   });
-
-  render();
 }
 
-browser.storage.local.get("mode").then((res) => {
+browser.storage.local.get([
+  "mode",
+  "enabled"
+]).then((res) => {
+
   mode = res.mode || "url_only";
+
+  enabled =
+    res.enabled !== undefined
+      ? res.enabled
+      : true;
+
+  render();
+});
+
+enabledButton.addEventListener("click", () => {
+  enabled = !enabled;
+
+  save();
   render();
 });
 
 left.addEventListener("click", () => {
-  setMode("url_only");
+  mode = "url_only";
+
+  save();
+  render();
 });
 
 right.addEventListener("click", () => {
-  setMode("all");
+  mode = "all";
+
+  save();
+  render();
 });
