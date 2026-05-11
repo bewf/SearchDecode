@@ -1,0 +1,76 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+
+  <style>
+    body {
+      margin: 0;
+      background: #0a0a0a;
+      width: 220px;
+      padding: 12px;
+      font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+      font-weight: 700;
+    }
+
+    .title {
+      color: #be3fff;
+      font-size: 20px;
+      font-weight: 800;
+      margin-bottom: 12px;
+      text-align: center;
+      letter-spacing: 0.4px;
+      user-select: none;
+    }
+
+    .toggle {
+      width: 100%;
+      height: 44px;
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid #222;
+      display: flex;
+    }
+
+    .half {
+      width: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      font-weight: 800;
+      font-size: 13px;
+
+      user-select: none;
+      cursor: pointer;
+
+      transition:
+        background 0.15s,
+        color 0.15s;
+    }
+
+    .active {
+      background: #be3fff;
+      color: #f5ea7b;
+    }
+
+    .inactive {
+      background: #0a0a0a;
+      color: #555;
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="title">Search Decode</div>
+
+<div class="toggle">
+  <div id="left" class="half">URL ONLY</div>
+  <div id="right" class="half">URL + TEXT</div>
+</div>
+
+<script src="popup.js"></script>
+
+</body>
+</html>

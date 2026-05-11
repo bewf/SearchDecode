@@ -1,8 +1,15 @@
 # Search Decode
 
-This is a simple extension that decodes Base64 searches instantly when valid.
+Simple extension that instantly decodes Base64 searches.
 
 
+## Modes
+
+### URL ONLY
+Only decodes when the output looks like a valid link
+
+### URL + TEXT
+Decodes links and normal text.
 
 ## Example
 
