@@ -6,8 +6,6 @@ let mode = "url_only";
 let enabled = true;
 
 function render() {
-
-  // enabled button
   if (enabled) {
     enabledButton.className = "button enabled";
     enabledButton.textContent = "ENABLED";
@@ -16,7 +14,6 @@ function render() {
     enabledButton.textContent = "DISABLED";
   }
 
-  // mode switch
   if (mode === "all") {
     right.className = "half active";
     left.className = "half inactive";
@@ -27,44 +24,29 @@ function render() {
 }
 
 function save() {
-  browser.storage.local.set({
-    mode,
-    enabled
-  });
+  chrome.storage.local.set({ mode, enabled });
 }
 
-browser.storage.local.get([
-  "mode",
-  "enabled"
-]).then((res) => {
-
+chrome.storage.local.get(["mode", "enabled"]).then((res) => {
   mode = res.mode || "url_only";
-
-  enabled =
-    res.enabled !== undefined
-      ? res.enabled
-      : true;
-
+  enabled = res.enabled !== undefined ? res.enabled : true;
   render();
 });
 
 enabledButton.addEventListener("click", () => {
   enabled = !enabled;
-
   save();
   render();
 });
 
 left.addEventListener("click", () => {
   mode = "url_only";
-
   save();
   render();
 });
 
 right.addEventListener("click", () => {
   mode = "all";
-
   save();
   render();
 });

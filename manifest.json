@@ -1,32 +1,32 @@
 {
-  "manifest_version": 2,
+  "manifest_version": 3,
   "name": "Search Decode",
   "version": "1.3.0",
   "description": "Decodes Base64 search queries into URLs or text.",
 
-  "browser_specific_settings": {
-    "gecko": {
-      "id": "searchdecode@bewf",
-      "data_collection_permissions": {
-        "required": ["none"],
-        "optional": []
-      }
-    }
-  },
-
   "permissions": [
-    "webRequest",
-    "webRequestBlocking",
-    "storage",
-    "*://www.google.com/search*",
-    "*://www.bing.com/search*"
+    "storage"
   ],
 
-  "background": {
-    "scripts": ["background.js"]
-  },
+"host_permissions": [
+  "*://www.google.com/search*",
+  "*://www.bing.com/search*",
+  "*://search.brave.com/search*"
+],
 
-  "browser_action": {
+"content_scripts": [
+  {
+    "matches": [
+      "*://www.google.com/search*",
+      "*://www.bing.com/search*",
+      "*://search.brave.com/search*"
+    ],
+    "js": ["content.js"],
+    "run_at": "document_start"
+  }
+],
+
+  "action": {
     "default_title": "Search Decode",
     "default_popup": "popup.html"
   },
