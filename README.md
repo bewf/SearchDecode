@@ -27,6 +27,8 @@ Decodes links and normal text.
 
 ## Links
 
-[Chromium](https://chromewebstore.google.com/detail/search-decode/dbhllaneidhkeeomgbdfponhoeabcehc)
+[Chromium Extension](https://chromewebstore.google.com/detail/search-decode/dbhllaneidhkeeomgbdfponhoeabcehc)
 
-[Mozilla](https://addons.mozilla.org/en-CA/firefox/addon/searchdecode)
+[Mozilla Extension](https://addons.mozilla.org/en-CA/firefox/addon/searchdecode)
+
+[Userscript](https://greasyfork.org/en/scripts/578231-search-decode) (ported by KHROTU)
