@@ -26,3 +26,8 @@ Decodes links and normal text.
 ```https://www.google.com/```
 
 
+## Links
+
+[Chromium](https://chromewebstore.google.com/detail/search-decode/dbhllaneidhkeeomgbdfponhoeabcehc)
+
+[Mozilla](https://addons.mozilla.org/en-CA/firefox/addon/searchdecode)
