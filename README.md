@@ -25,6 +25,8 @@ Decodes links and normal text.
 
 ```https://www.google.com/```
 
-## Behavior
-This will only redirect if the decoded output is a valid HTTP or HTTPS link.
+## Links
 
+[Chromium](https://chromewebstore.google.com/detail/search-decode/dbhllaneidhkeeomgbdfponhoeabcehc)
+
+[Mozilla](https://addons.mozilla.org/en-CA/firefox/addon/searchdecode)
