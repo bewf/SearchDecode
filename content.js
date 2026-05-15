@@ -19,9 +19,22 @@ function normalizeUrl(str) {
   return str;
 }
 
+function getFallbackSearchUrl(decoded) {
+  const host = window.location.hostname;
+  const encoded = encodeURIComponent(decoded);
+  if (host.includes("duckduckgo.com")) return "https://duckduckgo.com/?q=" + encoded;
+  if (host.includes("yahoo.com"))      return "https://search.yahoo.com/search?p=" + encoded;
+  if (host.includes("ecosia.org"))     return "https://www.ecosia.org/search?q=" + encoded;
+  if (host.includes("brave.com"))      return "https://search.brave.com/search?q=" + encoded;
+  if (host.includes("bing.com"))       return "https://www.bing.com/search?q=" + encoded;
+  return "https://www.google.com/search?q=" + encoded;
+}
+
 (async () => {
-  const query = new URL(window.location.href).searchParams.get("q");
-  console.log("Search Decode: q param =", query);
+  // Yahoo uses ?p= instead of ?q=
+  const params = new URL(window.location.href).searchParams;
+  const query = params.get("q") || params.get("p");
+  console.log("Search Decode: q/p param =", query);
 
   const res = await chrome.storage.local.get(["mode", "enabled"]);
   console.log("Search Decode: storage =", res);
@@ -33,7 +46,6 @@ function normalizeUrl(str) {
 
   const decoded = decodeBase64(query);
   console.log("Search Decode: decoded =", decoded);
-
   if (!decoded) { console.log("Search Decode: decode failed, bailing"); return; }
 
   if (mode === "url_only") {
@@ -46,7 +58,7 @@ function normalizeUrl(str) {
     if (isLikelyUrl(decoded)) {
       window.location.replace(normalizeUrl(decoded));
     } else {
-      window.location.replace("https://www.google.com/search?q=" + encodeURIComponent(decoded));
+      window.location.replace(getFallbackSearchUrl(decoded));
     }
   }
 })();

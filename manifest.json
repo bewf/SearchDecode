@@ -1,36 +1,37 @@
 {
   "manifest_version": 3,
   "name": "Search Decode",
-  "version": "1.3.0",
+  "version": "1.3.2",
   "description": "Decodes Base64 search queries into URLs or text.",
-
   "permissions": [
     "storage"
   ],
-
-"host_permissions": [
-  "*://www.google.com/search*",
-  "*://www.bing.com/search*",
-  "*://search.brave.com/search*"
-],
-
-"content_scripts": [
-  {
-    "matches": [
-      "*://www.google.com/search*",
-      "*://www.bing.com/search*",
-      "*://search.brave.com/search*"
-    ],
-    "js": ["content.js"],
-    "run_at": "document_start"
-  }
-],
-
+  "host_permissions": [
+    "*://www.google.com/search*",
+    "*://www.bing.com/search*",
+    "*://search.brave.com/search*",
+    "*://duckduckgo.com/?*",
+    "*://search.yahoo.com/search*",
+    "*://www.ecosia.org/search*"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "*://www.google.com/search*",
+        "*://www.bing.com/search*",
+        "*://search.brave.com/search*",
+        "*://duckduckgo.com/?*",
+        "*://search.yahoo.com/search*",
+        "*://www.ecosia.org/search*"
+      ],
+      "js": ["content.js"],
+      "run_at": "document_start"
+    }
+  ],
   "action": {
     "default_title": "Search Decode",
     "default_popup": "popup.html"
   },
-
   "icons": {
     "48": "icons/icon-48.png",
     "96": "icons/icon-96.png"

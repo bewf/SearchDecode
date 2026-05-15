@@ -1,6 +1,6 @@
 # Search Decode
 
-Simple extension that instantly decodes Base64 searches.
+Simple extension that instantly decodes Base64 searches. This build is intended for chromium based browsers.
 
 
 ## Modes
@@ -25,6 +25,4 @@ Decodes links and normal text.
 
 ```https://www.google.com/```
 
-## Behavior
-This will only redirect if the decoded output is a valid HTTP or HTTPS link.
 
