@@ -1,34 +1,31 @@
-# Search Decode
+# SearchDecode
 
-Simple extension that instantly decodes Base64 searches.
+Decodes and redirects Base64 URLs you search. 
 
+[![Chrome](https://img.shields.io/badge/Chrome-Install-4285F4?style=for-the-badge&logo=googlechrome&logoColor=white)](https://chromewebstore.google.com/detail/search-decode/dbhllaneidhkeeomgbdfponhoeabcehc)
+[![Firefox](https://img.shields.io/badge/Firefox-Install-FF7139?style=for-the-badge&logo=firefox&logoColor=white)](https://addons.mozilla.org/en-CA/firefox/addon/searchdecode)
+[![Userscript](https://img.shields.io/badge/Userscript-Install-670000?style=for-the-badge&logo=greasyfork&logoColor=white)](https://greasyfork.org/en/scripts/578231-search-decode)
+
+## How it works
+
+Paste a Base64 string in the URL and it decodes it automatically.
+
+**Here's an example:**
+
+**Input:** `aHR0cHM6Ly93d3cuZ29vZ2xlLmNvbS8=`  
+**Output:** `https://www.google.com/`
 
 ## Modes
 
-### URL ONLY
-Only decodes when the output looks like a valid link
+| Mode | What it does |
+|------|-------------|
+| **URL Only** | Only shows a result if the decoded output is a valid link |
+| **URL + Text** | Decodes anything. This mode could accidently decode things you don't want it to |
 
-### URL + TEXT
-Decodes links and normal text.
+## Install
 
-## Example
+Pick whatever works for you:
 
-
-
-**Input:**
-
-```aHR0cHM6Ly93d3cuZ29vZ2xlLmNvbS8=```
-
-
-
-**Output:**
-
-```https://www.google.com/```
-
-## Links
-
-[Chromium Extension](https://chromewebstore.google.com/detail/search-decode/dbhllaneidhkeeomgbdfponhoeabcehc)
-
-[Mozilla Extension](https://addons.mozilla.org/en-CA/firefox/addon/searchdecode)
-
-[Userscript](https://greasyfork.org/en/scripts/578231-search-decode) (ported by KHROTU)
+- **Chrome / Chromium** → [Chrome Web Store](https://chromewebstore.google.com/detail/search-decode/dbhllaneidhkeeomgbdfponhoeabcehc)
+- **Firefox** → [Firefox Add-ons](https://addons.mozilla.org/en-CA/firefox/addon/searchdecode)
+- **Userscript** → [Greasy Fork](https://greasyfork.org/en/scripts/578231-search-decode) *(ported by KHROTU)*
